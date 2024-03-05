@@ -1,0 +1,13 @@
+build
+builddir
+out
+*.out
+
+compile_commands.json
+compile_flags.txt
+
+*.swp
+.cache
+
+.vscode
+.vs
