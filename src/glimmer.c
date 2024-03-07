@@ -8,4 +8,3 @@ int glimmerInitContext(GlimmerContext* ctx)
 
     return 0;
 }
-

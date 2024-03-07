@@ -29,6 +29,7 @@ typedef struct
     VkInstance instance;
     VkPhysicalDevice gpu;
     VkDevice device;
+    VkCommandPool command_pool;
 } VulkanApp;
 
 bool create_instance(VulkanApp* app, const char** extensions, uint32_t count)
@@ -132,8 +133,12 @@ bool create_device(VulkanApp* app)
 
     /* create command pool */
     VkCommandPoolCreateInfo cpool_info = { 0 };
-    cpool.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-    cpool.queueFamilyIndex = ;
+    cpool_info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+    cpool_info.queueFamilyIndex = graphics_queue;
+    cpool_info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+
+    vkCreateCommandPool(app->device, &cpool_info, NULL, &app->command_pool);
+
     return true;
 }
 
